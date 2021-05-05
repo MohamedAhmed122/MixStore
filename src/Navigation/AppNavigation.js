@@ -3,15 +3,50 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MoreScreen from '../Screens/MoreScreen';
 import FavoriteScreen from '../Screens/FavoriteScreen';
 import ProductNavigation from './ProductNavigation';
+import {primary} from '../config/colors';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigation() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={ProductNavigation} />
-      <Tab.Screen name="Favorites" component={FavoriteScreen} />
-      <Tab.Screen name="More" component={MoreScreen} />
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: primary,
+        inactiveTintColor: 'gray',
+        keyboardHidesTabBar: true,
+        style: {
+          position: 'absolute',
+        },
+      }}>
+      <Tab.Screen
+        name="Drinks"
+        component={ProductNavigation}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Entypo name="drink" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavoriteScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Entypo name="heart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="More"
+        component={MoreScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="slack-square" size={size} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }

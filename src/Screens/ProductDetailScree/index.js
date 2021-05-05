@@ -47,7 +47,9 @@ export default function ProductDetailScreen({route}) {
           cupiditate veniam
         </Text>
       </View>
-      <AppButton title="Buy Now" color={primary} />
+      <View style={{marginBottom: 100}}>
+        <AppButton title="Buy Now" color={primary} />
+      </View>
     </ScrollView>
   );
 }

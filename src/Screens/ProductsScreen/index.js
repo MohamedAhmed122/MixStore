@@ -21,7 +21,7 @@ export default function ProductsScreen({navigation}) {
         renderItem={({item}) => (
           <Card
             item={item}
-            onPress={() => navigation.navigate('Product Details', item)}
+            onPress={() => navigation.navigate('Drink Details', item)}
           />
         )}
       />
