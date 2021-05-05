@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
-import {danger} from '../../config/colors';
+import {danger, white} from '../../config/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
 
 export default function LoginScreen() {
   return (
-    <View>
+    <View style={styles.screen}>
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
@@ -74,8 +74,13 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: white,
+  },
   container: {
-    marginTop: 100,
+    marginTop: 20,
   },
   errorMessage: {
     color: danger,
