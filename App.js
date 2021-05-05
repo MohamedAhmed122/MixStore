@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import AppButton from './src/common/AppButton';
 import AppInput from './src/common/AppInput';
+import LoginScreen from './src/Screens/LoginScreen';
 import WelcomeScreen from './src/Screens/WelcomeScreen';
-
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
     //   <AppButton title="my Pressable button" />
     //   <AppInput />
     // </View>
-    <WelcomeScreen />
+    <LoginScreen />
   );
 }
 
