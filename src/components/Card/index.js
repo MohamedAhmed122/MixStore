@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   name: {
-    color: secondary,
+    color: primary,
     fontSize: 18,
     fontWeight: 'bold',
   },

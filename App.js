@@ -5,7 +5,8 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {primary} from './src/config/colors';
 import AuthNavigation from './src/Navigation/AuthNavigation';
-import ProductScreen from './src/Screens/ProductScreen';
+import ProductsScreen from './src/Screens/ProductsScreen';
+import ProductDetailScreen from './src/Screens/ProductDetailScree';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
     // <NavigationContainer>
     //   <AuthNavigation />
     // </NavigationContainer>
-    <ProductScreen />
+    <ProductDetailScreen />
   );
 }
 

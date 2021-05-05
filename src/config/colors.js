@@ -1,6 +1,6 @@
-export const primary = '#FFD130';
+export const secondary = '#FFD130';
 
-export const secondary = '#52CC57';
+export const primary = '#52CC57';
 
 export const blue = '#18B5D9';
 

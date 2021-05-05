@@ -11,7 +11,7 @@ import Card from '../../components/Card';
 import {lightBlue, white} from '../../config/colors';
 import items from '../../data/items';
 
-export default function ProductScreen() {
+export default function ProductsScreen() {
   return (
     <View style={styles.screen}>
       <SafeAreaView />
