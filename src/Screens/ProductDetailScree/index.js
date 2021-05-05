@@ -14,28 +14,30 @@ import {primary, secondary} from '../../config/colors';
 
 const windowHeight = Dimensions.get('window').height;
 
-export default function ProductDetailScreen() {
+export default function ProductDetailScreen({route}) {
+  const item = route.params;
   return (
     <ScrollView>
       <Image
         source={{
-          uri:
-            'https://savortheflavour.com/wp-content/uploads/2020/07/Blue-Lagoon-Mocktail-Process-5.jpg',
+          uri: item.image,
         }}
         style={styles.image}
         resizeMode="cover"
       />
       <View style={styles.container}>
-        <Text style={styles.name}>Name Juice</Text>
+        <Text style={styles.name}>{item.name}</Text>
         <View>
           <AntDesign name="hearto" size={25} color="gray" />
-          <Text style={{marginTop: 3}}>120</Text>
+          <Text style={{marginTop: 3}}>{item.liked}</Text>
         </View>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Ingredients</Text>
-        <View>
-          <AppBadge title="Fruits" />
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+          {item.ingredients.map(ing => (
+            <AppBadge title={ing} />
+          ))}
         </View>
         <Text style={styles.title}>Description</Text>
         <Text style={styles.desc}>

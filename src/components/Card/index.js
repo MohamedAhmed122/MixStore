@@ -21,10 +21,10 @@ import items from '../../data/items';
 
 const windowWidth = Dimensions.get('window').width;
 
-export default function Card({item}) {
+export default function Card({item, onPress}) {
   const [clicked, setClicked] = useState(false);
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <Image
         source={{
           uri: item.image,

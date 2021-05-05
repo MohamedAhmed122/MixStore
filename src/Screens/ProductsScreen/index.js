@@ -11,16 +11,20 @@ import Card from '../../components/Card';
 import {lightBlue, white} from '../../config/colors';
 import items from '../../data/items';
 
-export default function ProductsScreen() {
+export default function ProductsScreen({navigation}) {
   return (
     <View style={styles.screen}>
       <SafeAreaView />
       <FlatList
         data={items}
         keyExtractor={items => items.id}
-        renderItem={({item}) => <Card item={item} />}
+        renderItem={({item}) => (
+          <Card
+            item={item}
+            onPress={() => navigation.navigate('Product Details', item)}
+          />
+        )}
       />
-     
     </View>
   );
 }
