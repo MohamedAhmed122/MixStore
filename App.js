@@ -2,14 +2,17 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import AppButton from './src/common/AppButton';
 import AppInput from './src/common/AppInput';
+import WelcomeScreen from './src/Screens/WelcomeScreen';
+
 
 export default function App() {
   return (
-    <View style={styles.screen}>
-      <Text>Hello World</Text>
-      <AppButton title="my Pressable button" />
-      <AppInput />
-    </View>
+    // <View style={styles.screen}>
+    //   <Text>Hello World</Text>
+    //   <AppButton title="my Pressable button" />
+    //   <AppInput />
+    // </View>
+    <WelcomeScreen />
   );
 }
 

@@ -27,3 +27,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+// height = 13 + 13 + 20 + 18 + 10 = 56
