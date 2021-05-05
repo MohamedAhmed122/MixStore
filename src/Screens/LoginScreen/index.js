@@ -20,7 +20,14 @@ export default function LoginScreen() {
           validationSchema={validationSchema}
           initialValues={{email: '', password: ''}}
           onSubmit={values => console.log(values)}>
-          {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
             <View>
               <AppInput
                 placeholder="Email"

@@ -6,9 +6,9 @@ export const blue = '#18B5D9';
 
 export const danger = '#FF685C';
 
-export const lightBlue = '#D5E5F2';
+export const lightBlue = '#fdeeb6';
 
-export const dark = '#0000';
+export const dark = '#000';
 
 export const lightGray = '#eaeaea';
 
