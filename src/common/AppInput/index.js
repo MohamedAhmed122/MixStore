@@ -4,8 +4,8 @@ import {dark, gray} from '../../config/colors';
 
 export default function AppInput({
   placeholder,
-  inputValue,
-  setInputValue,
+  value,
+  onChange,
   Icon,
   ...otherProps
 }) {
@@ -15,8 +15,9 @@ export default function AppInput({
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        value={inputValue}
-        onChangeText={text => setInputValue(text)}
+        value={value}
+        onChangeText={onChange}
+        {...otherProps}
       />
     </View>
   );

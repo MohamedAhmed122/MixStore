@@ -5,23 +5,46 @@ import * as Yup from 'yup';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
-import {danger} from '../../config/colors';
+import {danger, secondary} from '../../config/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(6).label('Password'),
+  firstName: Yup.string().required().min(3).label('First Name'),
+  lastName: Yup.string().required().min(3).label('Last Name'),
 });
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   return (
     <View>
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
-          initialValues={{email: '', password: ''}}
+          initialValues={{email: '', password: '', firstName: '', lastName: ''}}
           onSubmit={values => console.log(values)}>
           {({handleChange, handleBlur, handleSubmit, values, errors}) => (
             <View>
+              <AppInput
+                placeholder="First Name"
+                value={values.firstName}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChange={handleChange('firstName')}
+                onBlur={handleBlur('firstName')}
+              />
+              {errors.firstName && (
+                <Text style={styles.errorMessage}>{errors.firstName}</Text>
+              )}
+              <AppInput
+                placeholder="Last Name"
+                value={values.lastName}
+                autoCorrect={false}
+                onChange={handleChange('lastName')}
+                onBlur={handleBlur('lastName')}
+              />
+              {errors.lastName && (
+                <Text style={styles.errorMessage}>{errors.lastName}</Text>
+              )}
               <AppInput
                 placeholder="Email"
                 value={values.email}
@@ -31,14 +54,6 @@ export default function LoginScreen() {
                 textContentType="emailAddress"
                 onChange={handleChange('email')}
                 onBlur={handleBlur('email')}
-                Icon={() => (
-                  <FontAwesome5
-                    name="user-alt"
-                    size={22}
-                    color="gray"
-                    style={{paddingRight: 5}}
-                  />
-                )}
               />
               {errors.email && (
                 <Text style={styles.errorMessage}>{errors.email}</Text>
@@ -52,19 +67,15 @@ export default function LoginScreen() {
                 value={values.password}
                 onChange={handleChange('password')}
                 onBlur={handleBlur('password')}
-                Icon={() => (
-                  <FontAwesome5
-                    name="lock"
-                    size={22}
-                    color="gray"
-                    style={{paddingRight: 5}}
-                  />
-                )}
               />
               {errors.password && (
                 <Text style={styles.errorMessage}>{errors.password}</Text>
               )}
-              <AppButton onPress={handleSubmit} title="Login" />
+              <AppButton
+                onPress={handleSubmit}
+                title="Register"
+                color={secondary}
+              />
             </View>
           )}
         </Formik>
