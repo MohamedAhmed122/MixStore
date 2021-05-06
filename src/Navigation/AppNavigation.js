@@ -6,6 +6,7 @@ import ProductNavigation from './ProductNavigation';
 import {primary} from '../config/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import CartScreen from '../Screens/CartScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +27,15 @@ export default function AppNavigation() {
         options={{
           tabBarIcon: ({color, size}) => (
             <Entypo name="drink" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Entypo name="shopping-cart" size={size} color={color} />
           ),
         }}
       />

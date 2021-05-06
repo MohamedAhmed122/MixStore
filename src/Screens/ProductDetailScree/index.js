@@ -48,7 +48,7 @@ export default function ProductDetailScreen({route}) {
         </Text>
       </View>
       <View style={{marginBottom: 100}}>
-        <AppButton title="Buy Now" color={primary} />
+        <AppButton title="Buy Now"  />
       </View>
     </ScrollView>
   );
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center', 
     margin: 15,
   },
   name: {
