@@ -8,8 +8,8 @@ import AppInput from '../../common/AppInput';
 import {danger, white} from '../../config/colors';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(6).label('Password'),
+  email: Yup.string().email().required().label('Email'),
+  password: Yup.string().min(6).required().label('Password'),
 });
 
 export default function LoginScreen() {

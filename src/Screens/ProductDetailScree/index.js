@@ -14,7 +14,7 @@ import {primary, secondary} from '../../config/colors';
 
 const windowHeight = Dimensions.get('window').height;
 
-export default function ProductDetailScreen({route}) {
+export default function ProductDetailScreen({route, navigation}) {
   const item = route.params;
   return (
     <ScrollView>
@@ -48,7 +48,10 @@ export default function ProductDetailScreen({route}) {
         </Text>
       </View>
       <View style={{marginBottom: 100}}>
-        <AppButton title="Buy Now"  />
+        <AppButton
+          title="Buy Now"
+          onPress={() => navigation.navigate('Cart')}
+        />
       </View>
     </ScrollView>
   );
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', 
+    alignItems: 'center',
     margin: 15,
   },
   name: {
