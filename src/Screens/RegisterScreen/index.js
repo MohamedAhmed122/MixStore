@@ -22,29 +22,38 @@ export default function RegisterScreen() {
           validationSchema={validationSchema}
           initialValues={{email: '', password: '', firstName: '', lastName: ''}}
           onSubmit={values => console.log(values)}>
-          {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
             <View>
+              {/* {console.log(errors)}  */}
+              {console.log(touched, 'e')}
               <AppInput
                 placeholder="First Name"
                 value={values.firstName}
                 autoCapitalize="none"
                 autoCorrect={false}
-                onChange={handleChange('firstName')}
+                onChangeText={handleChange('firstName')}
                 onBlur={handleBlur('firstName')}
               />
-              {errors.firstName && (
-                <Text style={styles.errorMessage}>{errors.firstName}</Text>
-              )}
+              {errors.firstName && touched?.firstName ? (
+                <Text style={styles.errorMessage}>{errors?.firstName}</Text>
+              ) : null}
               <AppInput
                 placeholder="Last Name"
                 value={values.lastName}
                 autoCorrect={false}
-                onChange={handleChange('lastName')}
+                onChangeText={handleChange('lastName')}
                 onBlur={handleBlur('lastName')}
               />
-              {errors.lastName && (
-                <Text style={styles.errorMessage}>{errors.lastName}</Text>
-              )}
+               {errors.lastName && touched?.lastName ? (
+                <Text style={styles.errorMessage}>{errors?.lastName}</Text>
+              ) : null}
               <AppInput
                 placeholder="Email"
                 value={values.email}
@@ -52,12 +61,12 @@ export default function RegisterScreen() {
                 autoCorrect={false}
                 keyboardType="email-address"
                 textContentType="emailAddress"
-                onChange={handleChange('email')}
+                onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
               />
-              {errors.email && (
-                <Text style={styles.errorMessage}>{errors.email}</Text>
-              )}
+               {errors.email && touched?.email ? (
+                <Text style={styles.errorMessage}>{errors?.email}</Text>
+              ) : null}
               <AppInput
                 placeholder="Password"
                 autoCapitalize="none"
@@ -65,12 +74,12 @@ export default function RegisterScreen() {
                 textContentType="password"
                 secureTextEntry
                 value={values.password}
-                onChange={handleChange('password')}
+                onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
               />
-              {errors.password && (
-                <Text style={styles.errorMessage}>{errors.password}</Text>
-              )}
+               {errors.password && touched?.password ? (
+                <Text style={styles.errorMessage}>{errors?.password}</Text>
+              ) : null}
               <AppButton
                 onPress={handleSubmit}
                 title="Register"

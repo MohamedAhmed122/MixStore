@@ -10,7 +10,7 @@ export default function ProductNavigation() {
   return (
     <Stack.Navigator screenOptions={{headerTintColor: primary}}>
       <Stack.Screen
-        name="Drinks"
+        name="Drink"
         options={{headerShown: false}}
         component={ProductsScreen}
       />

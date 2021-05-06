@@ -5,21 +5,35 @@ import * as Yup from 'yup';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
-import {danger, white} from '../../config/colors';
+import {danger, primary, secondary, white} from '../../config/colors';
+import {useDispatch, useSelector} from 'react-redux';
+import {userLogin} from '../../redux/auth/AuthActions';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required().label('Email'),
-  password: Yup.string().min(6).required().label('Password'),
+  email: Yup.string().required().email().label('Email'),
+  password: Yup.string().required().min(6).label('Password'),
 });
 
 export default function LoginScreen() {
+  const dispatch = useDispatch();
+  const {isAuthenticated} = useSelector(state => state.auth); 
+  console.log(isAuthenticated, 'is');
+
+  const onSubmit = values => {
+    dispatch(
+      userLogin({
+        email: values.email,
+      }),
+    );
+  };
+
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
           initialValues={{email: '', password: ''}}
-          onSubmit={values => console.log(values)}>
+          onSubmit={onSubmit}>
           {({
             handleChange,
             handleBlur,
@@ -34,9 +48,7 @@ export default function LoginScreen() {
                 value={values.email}
                 autoCapitalize="none"
                 autoCorrect={false}
-                keyboardType="email-address"
-                textContentType="emailAddress"
-                onChange={handleChange('email')}
+                onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 Icon={() => (
                   <FontAwesome5
@@ -47,9 +59,9 @@ export default function LoginScreen() {
                   />
                 )}
               />
-              {errors.email && (
-                <Text style={styles.errorMessage}>{errors.email}</Text>
-              )}
+              {errors.email && touched?.email ? (
+                <Text style={styles.errorMessage}>{errors?.email}</Text>
+              ) : null}
               <AppInput
                 placeholder="Password"
                 autoCapitalize="none"
@@ -57,7 +69,7 @@ export default function LoginScreen() {
                 textContentType="password"
                 secureTextEntry
                 value={values.password}
-                onChange={handleChange('password')}
+                onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 Icon={() => (
                   <FontAwesome5
@@ -68,10 +80,14 @@ export default function LoginScreen() {
                   />
                 )}
               />
-              {errors.password && (
-                <Text style={styles.errorMessage}>{errors.password}</Text>
-              )}
-              <AppButton onPress={handleSubmit} title="Login" />
+              {errors.password && touched?.password ? (
+                <Text style={styles.errorMessage}>{errors?.password}</Text>
+              ) : null}
+              <AppButton
+                onPress={handleSubmit}
+                title="Register"
+                color={primary}
+              />
             </View>
           )}
         </Formik>

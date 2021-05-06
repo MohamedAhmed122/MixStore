@@ -5,18 +5,17 @@ import {dark, gray} from '../../config/colors';
 export default function AppInput({
   placeholder,
   value,
-  onChange,
+  onChangeText,
   Icon,
   ...otherProps
 }) {
   return (
     <View style={styles.container}>
-      {Icon && <Icon {...otherProps} style={styles.icon} />}
+      {/* {Icon && <Icon {...otherProps} style={styles.icon} />} */}
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        value={value}
-        onChangeText={onChange}
+        onChangeText={onChangeText}
         {...otherProps}
       />
     </View>
