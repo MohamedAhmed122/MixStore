@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import AppButton from '../../common/AppButton';
 import CartRow from '../../components/CartRow';
 import {white} from '../../config/colors';
 
 export default function CartScreen() {
-  const [count, setCount] = useState(1);
   return (
     <View style={styles.screen}>
       <SafeAreaView />
-      <CartRow count={count} setCount={setCount} />
+      <CartRow />
+      <CartRow />
+      <AppButton title='Order Now'/>
     </View>
   );
 }

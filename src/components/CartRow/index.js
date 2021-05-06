@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {gray} from '../../config/colors';
 
-export default function CartRow({count, setCount}) {
+export default function CartRow() {
+  const [count, setCount] = useState(1)
   return (
     <View style={styles.container}>
       <View style={styles.row}>
