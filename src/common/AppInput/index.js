@@ -11,7 +11,7 @@ export default function AppInput({
 }) {
   return (
     <View style={styles.container}>
-      {/* {Icon && <Icon {...otherProps} style={styles.icon} />} */}
+      {Icon && <Icon {...otherProps} style={styles.icon} />}
       <TextInput
         style={styles.input}
         placeholder={placeholder}
