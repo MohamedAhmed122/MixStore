@@ -36,7 +36,7 @@ export default function ProductDetailScreen({route, navigation}) {
         <Text style={styles.title}>Ingredients</Text>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {item.ingredients.map(ing => (
-            <AppBadge title={ing} />
+            <AppBadge key={ing} title={ing} />
           ))}
         </View>
         <Text style={styles.title}>Description</Text>

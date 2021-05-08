@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProductsScreen from '../Screens/ProductsScreen';
-import ProductDetailScreen from '../Screens/ProductDetailScree';
+import ProductDetailScreen from '../Screens/ProductDetailScreen';
 import {primary} from '../config/colors';
 
 const Stack = createStackNavigator();

@@ -2,10 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {userRegister} from '../../redux/auth/AuthActions';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
 import {danger, primary, secondary, white} from '../../config/colors';
+import {useDispatch} from 'react-redux';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -15,13 +16,25 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function RegisterScreen() {
+  const dispatch = useDispatch();
+
+  const onSubmit = value => {
+    dispatch(
+      userRegister({
+        email: value.email,
+        firstName: value.firstName,
+        lastName: value.lastName,
+      }),
+    );
+  };
+
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
           initialValues={{email: '', password: '', firstName: '', lastName: ''}}
-          onSubmit={values => console.log(values)}>
+          onSubmit={values => onSubmit(values)}>
           {({
             handleChange,
             handleBlur,
@@ -51,7 +64,7 @@ export default function RegisterScreen() {
                 onChangeText={handleChange('lastName')}
                 onBlur={handleBlur('lastName')}
               />
-               {errors.lastName && touched?.lastName ? (
+              {errors.lastName && touched?.lastName ? (
                 <Text style={styles.errorMessage}>{errors?.lastName}</Text>
               ) : null}
               <AppInput
@@ -64,7 +77,7 @@ export default function RegisterScreen() {
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
               />
-               {errors.email && touched?.email ? (
+              {errors.email && touched?.email ? (
                 <Text style={styles.errorMessage}>{errors?.email}</Text>
               ) : null}
               <AppInput
@@ -77,7 +90,7 @@ export default function RegisterScreen() {
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
               />
-               {errors.password && touched?.password ? (
+              {errors.password && touched?.password ? (
                 <Text style={styles.errorMessage}>{errors?.password}</Text>
               ) : null}
               <AppButton
