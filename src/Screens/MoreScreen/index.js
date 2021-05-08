@@ -4,8 +4,12 @@ import {danger, lightGray, primary} from '../../config/colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import List from '../../components/List';
+import {useSelector} from 'react-redux';
 
 export default function MoreScreen() {
+  const {user} = useSelector(state => state.auth);
+  console.log(user);
+
   return (
     <View style={styles.screen}>
       <SafeAreaView />
@@ -16,7 +20,7 @@ export default function MoreScreen() {
             style={styles.image}
             resizeMode="cover"
           />
-          <Text style={styles.name}>Mohamed Youssef</Text>
+          <Text style={styles.name}>{user.email}</Text>
         </View>
       </View>
       <List
@@ -31,9 +35,7 @@ export default function MoreScreen() {
       />
       <List
         title="Settings"
-        Icon={() => (
-          <AntDesign name="setting" color={primary} size={20} />
-        )}
+        Icon={() => <AntDesign name="setting" color={primary} size={20} />}
       />
       <List
         title="Logout"
