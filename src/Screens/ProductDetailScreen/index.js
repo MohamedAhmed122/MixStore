@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,14 +8,19 @@ import {
   Dimensions,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useDispatch} from 'react-redux';
 import AppBadge from '../../common/AppBadge';
 import AppButton from '../../common/AppButton';
-import {primary, secondary} from '../../config/colors';
+import {danger, primary} from '../../config/colors';
+import {addItemToCart} from '../../redux/cart/CartActions';
 
 const windowHeight = Dimensions.get('window').height;
 
 export default function ProductDetailScreen({route, navigation}) {
   const item = route.params;
+  const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <ScrollView>
       <Image
@@ -28,7 +33,12 @@ export default function ProductDetailScreen({route, navigation}) {
       <View style={styles.container}>
         <Text style={styles.name}>{item.name}</Text>
         <View>
-          <AntDesign name="hearto" size={25} color="gray" />
+          <AntDesign
+            onPress={() => setClicked(!clicked)}
+            name={clicked ? 'heart' : 'hearto'}
+            size={25}
+            color={clicked ? danger : 'gray'}
+          />
           <Text style={{marginTop: 3}}>{item.liked}</Text>
         </View>
       </View>
@@ -49,8 +59,11 @@ export default function ProductDetailScreen({route, navigation}) {
       </View>
       <View style={{marginBottom: 100}}>
         <AppButton
-          title="Buy Now"
-          onPress={() => navigation.navigate('Cart')}
+          title="ADD To CART"
+          onPress={() => {
+            navigation.navigate('Cart');
+            dispatch(addItemToCart(item));
+          }}
         />
       </View>
     </ScrollView>

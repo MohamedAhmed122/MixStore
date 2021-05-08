@@ -17,7 +17,7 @@ import {
   secondary,
   white,
 } from '../../config/colors';
-import items from '../../data/items';
+
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -32,13 +32,7 @@ export default function Card({item, onPress}) {
         resizeMode="cover"
         style={styles.image}
       />
-      <Feather
-        name="shopping-cart"
-        color={clicked ? danger : white}
-        size={25}
-        style={styles.icon}
-        onPress={() => setClicked(true)}
-      />
+
       <View style={styles.container}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.price}>${item.price}</Text>
@@ -61,11 +55,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 230,
   },
-  icon: {
-    position: 'absolute',
-    marginTop: 20,
-    right: 10,
-  },
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
