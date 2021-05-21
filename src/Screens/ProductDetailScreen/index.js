@@ -19,7 +19,15 @@ const windowHeight = Dimensions.get('window').height;
 export default function ProductDetailScreen({route, navigation}) {
   const item = route.params;
   const [clicked, setClicked] = useState(false);
+
   const dispatch = useDispatch();
+  const handleLikeCount = likes => {
+    if (clicked) {
+      return Number(likes) + 1;
+    } else {
+      return likes;
+    }
+  };
 
   return (
     <ScrollView>
@@ -39,7 +47,7 @@ export default function ProductDetailScreen({route, navigation}) {
             size={25}
             color={clicked ? danger : 'gray'}
           />
-          <Text style={{marginTop: 3}}>{item.liked}</Text>
+          <Text style={{marginTop: 3}}>{handleLikeCount(item.liked)}</Text>
         </View>
       </View>
       <View style={styles.textContainer}>

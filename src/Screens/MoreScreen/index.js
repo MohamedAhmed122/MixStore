@@ -7,9 +7,8 @@ import List from '../../components/List';
 import {useSelector} from 'react-redux';
 
 export default function MoreScreen() {
-  const {user} = useSelector(state => state.auth);
-  console.log(user);
-
+  const {currentUser} = useSelector(state => state.auth);
+  console.log(currentUser, 'd');
   return (
     <View style={styles.screen}>
       <SafeAreaView />
@@ -20,7 +19,7 @@ export default function MoreScreen() {
             style={styles.image}
             resizeMode="cover"
           />
-          <Text style={styles.name}>{user.email}</Text>
+          <Text style={styles.name}>{currentUser.email}</Text>
         </View>
       </View>
       <List

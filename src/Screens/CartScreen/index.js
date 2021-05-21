@@ -12,7 +12,7 @@ export default function CartScreen({navigation}) {
     <View style={styles.screen}>
       <SafeAreaView />
       {items.map(item => (
-        <CartRow key={item.id} item={item} />
+        <CartRow key={item._id} item={item} />
       ))}
       {items.length < 1 ? (
         <View style={styles.container}>

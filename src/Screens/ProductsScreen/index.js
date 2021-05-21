@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import Card from '../../components/Card';
+import AppLoading from '../../common/AppLoading';
 import {white} from '../../config/colors';
 
 import {getProducts} from '../../requests/products';
@@ -12,9 +13,8 @@ export default function ProductsScreen({navigation}) {
       .then(res => setItems(res.products))
       .catch(err => console.log(err));
   }, []);
-  console.log(typeof items.products, 'o0o');
 
-  if (items?.length < 1) return <View></View>;
+  if (items?.length < 1) return <AppLoading />;
   return (
     <View style={styles.screen}>
       <SafeAreaView />
