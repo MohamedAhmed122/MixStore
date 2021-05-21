@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -6,6 +6,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
 import {danger, primary, white} from '../../config/colors';
+import UploadScreen from '../../components/LottieView';
+import {useSelector} from 'react-redux';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -15,13 +17,18 @@ const validationSchema = Yup.object().shape({
   zipCode: Yup.string().required().min(3).label('Zip code'),
 });
 
-export default function LoginScreen() {
+export default function AddressScreen({navigation}) {
+  const [visible, setVisible] = useState(false);
+  const {user} = useSelector(state => state.auth);
   const onSubmit = values => {
     console.log(values);
+    setVisible(true);
+    navigation.navigate('Drinks');
   };
 
   return (
     <View style={styles.screen}>
+      <UploadScreen visible={visible} onDone={() => setVisible(false)} />
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
@@ -130,11 +137,7 @@ export default function LoginScreen() {
               {errors.zipCode && touched?.zipCode ? (
                 <Text style={styles.errorMessage}>{errors?.zipCode}</Text>
               ) : null}
-              <AppButton
-                onPress={handleSubmit}
-                title="Order"
-                color={primary}
-              />
+              <AppButton onPress={handleSubmit} title="Order" color={primary} />
             </View>
           )}
         </Formik>

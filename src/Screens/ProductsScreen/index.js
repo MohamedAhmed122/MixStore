@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -8,16 +8,27 @@ import {
   View,
 } from 'react-native';
 import Card from '../../components/Card';
-import {lightBlue, white} from '../../config/colors';
-import items from '../../data/items';
+import {white} from '../../config/colors';
+
+import {getProducts} from '../../requests/products';
 
 export default function ProductsScreen({navigation}) {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    getProducts()
+      .then(res => setItems(res.products))
+      .catch(err => console.log(err));
+  }, []);
+  console.log(typeof items.products, 'o0o');
+
+  if (items?.length < 1) return <View></View>;
   return (
     <View style={styles.screen}>
       <SafeAreaView />
+
       <FlatList
         data={items}
-        keyExtractor={items => items.id}
+        keyExtractor={items => items._id}
         renderItem={({item}) => (
           <Card
             item={item}
