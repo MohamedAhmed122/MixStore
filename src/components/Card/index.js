@@ -7,17 +7,8 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import {
-  danger,
-  dark,
-  lightBlue,
-  lightGray,
-  primary,
-  secondary,
-  white,
-} from '../../config/colors';
 
+import {danger, lightGray, primary} from '../../config/colors';
 
 const windowWidth = Dimensions.get('window').width;
 

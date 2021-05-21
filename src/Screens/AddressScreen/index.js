@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -7,7 +7,9 @@ import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
 import {danger, primary, white} from '../../config/colors';
 import UploadScreen from '../../components/LottieView';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {setOrderEmpty, userCreateOrder} from '../../redux/Orders/OrdersAction';
+import {emptyCart} from '../../redux/cart/CartActions';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -19,16 +21,26 @@ const validationSchema = Yup.object().shape({
 
 export default function AddressScreen({navigation}) {
   const [visible, setVisible] = useState(false);
-  const {user} = useSelector(state => state.auth);
-  const onSubmit = values => {
-    console.log(values);
-    setVisible(true);
-    navigation.navigate('Drinks');
-  };
+  const {orderItems, success} = useSelector(state => state.order);
+  const dispatch = useDispatch();
 
+  const onSubmit = values => {
+    dispatch(userCreateOrder(orderItems, values));
+  };
+  useEffect(() => {
+    if (success) {
+      setVisible(true);
+      dispatch(emptyCart());
+      dispatch(setOrderEmpty())
+    }
+  }, [success]);
+  const handleDone = () => {
+    setVisible(false);
+    navigation.navigate('More');
+  };
   return (
     <View style={styles.screen}>
-      <UploadScreen visible={visible} onDone={() => setVisible(false)} />
+      <UploadScreen visible={visible} onDone={handleDone} />
       <View style={styles.container}>
         <Formik
           validationSchema={validationSchema}
