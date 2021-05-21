@@ -1,12 +1,15 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import AppButton from '../../common/AppButton';
 import CartRow from '../../components/CartRow';
 import {white} from '../../config/colors';
+import {saveOrderItems} from '../../redux/Orders/OrdersAction';
 
 export default function CartScreen({navigation}) {
   const {items} = useSelector(state => state.cart);
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.screen}>
@@ -21,7 +24,10 @@ export default function CartScreen({navigation}) {
       ) : (
         <AppButton
           title="Order Now"
-          onPress={() => navigation.navigate('Insert Address')}
+          onPress={() => {
+            navigation.navigate('Insert Address');
+            dispatch(saveOrderItems(items));
+          }}
         />
       )}
     </View>
