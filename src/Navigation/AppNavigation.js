@@ -1,13 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MoreScreen from '../Screens/MoreScreen';
 import FavoriteScreen from '../Screens/FavoriteScreen';
 import ProductNavigation from './ProductNavigation';
 import {primary} from '../config/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import CartScreen from '../Screens/CartScreen';
 import CartNavigation from './CartNavigation';
+import MoreNavigation from './MoreNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +50,7 @@ export default function AppNavigation() {
       />
       <Tab.Screen
         name="More"
-        component={MoreScreen}
+        component={MoreNavigation}
         options={{
           tabBarIcon: ({color, size}) => (
             <AntDesign name="slack-square" size={size} color={color} />

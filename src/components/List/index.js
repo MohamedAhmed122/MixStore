@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {danger, lightGray, primary} from '../../config/colors';
 
-export default function List({Icon, title, ...props}) {
+export default function List({Icon, onPress, title, ...props}) {
   return (
-    <TouchableOpacity style={styles.list}>
+    <TouchableOpacity style={styles.list} onPress={onPress}>
       <View style={styles.row}>
         <Icon {...props} />
         <Text style={styles.text}>{title}</Text>

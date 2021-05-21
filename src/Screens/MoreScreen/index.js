@@ -6,7 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import List from '../../components/List';
 import {useSelector} from 'react-redux';
 
-export default function MoreScreen() {
+export default function MoreScreen({navigation}) {
   const {currentUser} = useSelector(state => state.auth);
   console.log(currentUser, 'd');
   return (
@@ -29,10 +29,12 @@ export default function MoreScreen() {
         )}
       />
       <List
+        onPress={() => navigation.navigate('My Orders')}
         title="Orders"
         Icon={() => <AntDesign name="appstore1" color={primary} size={20} />}
       />
       <List
+        onPress={() => navigation.navigate('My Orders')}
         title="Settings"
         Icon={() => <AntDesign name="setting" color={primary} size={20} />}
       />
