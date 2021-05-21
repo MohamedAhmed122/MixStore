@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -16,17 +16,21 @@ const validationSchema = Yup.object().shape({
 
 export default function LoginScreen() {
   const dispatch = useDispatch();
-  const {isAuthenticated} = useSelector(state => state.auth); 
+  const {isAuthenticated, error} = useSelector(state => state.auth);
   console.log(isAuthenticated, 'is');
 
   const onSubmit = values => {
-    dispatch(
-      userLogin({
-        email: values.email,
-      }),
-    );
+    const {email, password} = values;
+    dispatch(userLogin(email, password));
   };
 
+  // useEffect(()=>{
+  //   if(error){
+  //     setTimeout(() => {
+        
+  //     }, 2000);
+  //   }
+  // },[error])
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
@@ -83,11 +87,8 @@ export default function LoginScreen() {
               {errors.password && touched?.password ? (
                 <Text style={styles.errorMessage}>{errors?.password}</Text>
               ) : null}
-              <AppButton
-                onPress={handleSubmit}
-                title="Register"
-                color={primary}
-              />
+              {error && <Text style={styles.errorMessage}>{error}</Text>}
+              <AppButton onPress={handleSubmit} title="Login" color={primary} />
             </View>
           )}
         </Formik>

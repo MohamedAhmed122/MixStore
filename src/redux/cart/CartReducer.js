@@ -8,12 +8,13 @@ const CartReducer = (state = initialState, {type, payload}) => {
   switch (type) {
     case ADD_CART_ITEM:
       const newItem = payload;
-      const existingItem = state.items.find(item => item.id === newItem.id);
+      console.log(newItem, 'new Item')
+      const existingItem = state.items.find(item => item._id === newItem._id);
       if (existingItem) {
         return {
           ...state,
           item: state.items.map(item =>
-            item.id === existingItem.id ? newItem : item,
+            item._id === existingItem._id ? newItem : item,
           ),
         };
       } else {
@@ -25,7 +26,7 @@ const CartReducer = (state = initialState, {type, payload}) => {
     case REMOVE_CART_ITEM:
       return {
         ...state,
-        items: state.items.filter(item => item.id !== payload.id),
+        items: state.items.filter(item => item._id !== payload._id),
       };
     default:
       return state;

@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import Card from '../../components/Card';
 import {white} from '../../config/colors';
 
@@ -25,7 +18,6 @@ export default function ProductsScreen({navigation}) {
   return (
     <View style={styles.screen}>
       <SafeAreaView />
-
       <FlatList
         data={items}
         keyExtractor={items => items._id}

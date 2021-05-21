@@ -6,7 +6,7 @@ import {userRegister} from '../../redux/auth/AuthActions';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
 import {danger, primary, secondary, white} from '../../config/colors';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -17,15 +17,11 @@ const validationSchema = Yup.object().shape({
 
 export default function RegisterScreen() {
   const dispatch = useDispatch();
+  const {error} = useSelector(state => state.auth);
 
   const onSubmit = value => {
-    dispatch(
-      userRegister({
-        email: value.email,
-        firstName: value.firstName,
-        lastName: value.lastName,
-      }),
-    );
+    const {firstName, email, password} = value;
+    dispatch(userRegister(firstName, email, password));
   };
 
   return (
@@ -93,6 +89,7 @@ export default function RegisterScreen() {
               {errors.password && touched?.password ? (
                 <Text style={styles.errorMessage}>{errors?.password}</Text>
               ) : null}
+              {error && <Text style={styles.errorMessage}>{error}</Text>}
               <AppButton
                 onPress={handleSubmit}
                 title="Register"
