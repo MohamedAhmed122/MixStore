@@ -5,10 +5,11 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {danger, gray, primary} from '../../config/colors';
 
-export default function UserRow({user}) {
+export default function UserRow({user, handleAdminUser}) {
+  console.log('----------', user);
   return (
     <View style={styles.flex}>
-      <View >
+      <View>
         <Avatar
           type="text"
           text={user.name}
@@ -21,9 +22,31 @@ export default function UserRow({user}) {
 
       <Text style={styles.text}>{user.email}</Text>
       {user.isAdmin === 'true' ? (
-        <AntDesign color={primary} name="checkcircle" size={30} />
+        <AntDesign
+          color={primary}
+          name="checkcircle"
+          size={30}
+          onPress={() =>
+            handleAdminUser(user._id, {
+              name: user.name,
+              email: user.email,
+              isAdmin: false,
+            })
+          }
+        />
       ) : (
-        <Entypo color={danger} name="circle" size={30} />
+        <Entypo
+          color={danger}
+          name="circle"
+          size={30}
+          onPress={() =>
+            handleAdminUser(user._id, {
+              name: user.name,
+              email: user.email,
+              isAdmin: true,
+            })
+          }
+        />
       )}
     </View>
   );
