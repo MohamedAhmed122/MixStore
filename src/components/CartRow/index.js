@@ -29,7 +29,11 @@ export default function CartRow({item}) {
             }}
             style={styles.image}
           />
-          <Text style={styles.text}>{item.name}</Text>
+          <Text style={styles.text}>
+            {item.name.length > 20
+              ? item.name.substring(0, 20 - 3) + '...'
+              : item.name}
+          </Text>
         </View>
         <View style={styles.row}>
           <AntDesign

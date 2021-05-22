@@ -13,7 +13,11 @@ export default function OrderRow({order}) {
           resizeMode="cover"
           style={styles.image}
         />
-        <Text style={styles.name}> {order.name}</Text>
+        <Text style={styles.name}>
+          {order.name.length > 20
+            ? order.name.substring(0, 20 - 3) + '...'
+            : order.name}
+        </Text>
         <Text style={styles.qty}>
           {Math.round(Math.random() * (4 - 1) + 1)}
         </Text>

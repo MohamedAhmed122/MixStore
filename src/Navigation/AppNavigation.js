@@ -4,13 +4,17 @@ import FavoriteScreen from '../Screens/FavoriteScreen';
 import ProductNavigation from './ProductNavigation';
 import {primary} from '../config/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CartNavigation from './CartNavigation';
 import MoreNavigation from './MoreNavigation';
+import {useSelector} from 'react-redux';
+import AdminMenuScreen from '../Screens/AdminMenuScreen';
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigation() {
+  const {currentUser} = useSelector(state => state.auth);
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -21,6 +25,21 @@ export default function AppNavigation() {
           position: 'absolute',
         },
       }}>
+      {currentUser.isAdmin === 'true' && (
+        <Tab.Screen
+          name="Admin"
+          component={AdminMenuScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons
+                name="admin-panel-settings"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+      )}
       <Tab.Screen
         name="Drinks"
         component={ProductNavigation}

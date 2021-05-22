@@ -11,7 +11,7 @@ import {userLogin} from '../../redux/auth/AuthActions';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(6).label('Password'),
+  password: Yup.string().required().min(5).label('Password'),
 });
 
 export default function LoginScreen() {
@@ -24,13 +24,7 @@ export default function LoginScreen() {
     dispatch(userLogin(email, password));
   };
 
-  // useEffect(()=>{
-  //   if(error){
-  //     setTimeout(() => {
-        
-  //     }, 2000);
-  //   }
-  // },[error])
+ 
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
