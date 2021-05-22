@@ -4,10 +4,12 @@ import {danger, lightGray, primary} from '../../config/colors';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import List from '../../components/List';
-import {useSelector} from 'react-redux';
+import {userLogout} from '../../redux/auth/AuthActions';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function MoreScreen({navigation}) {
   const {currentUser} = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   console.log(currentUser, 'd');
   return (
     <View style={styles.screen}>
@@ -40,6 +42,7 @@ export default function MoreScreen({navigation}) {
       />
       <List
         title="Logout"
+        onPress={() => dispatch(userLogout())}
         Icon={() => <AntDesign name="logout" color={danger} size={20} />}
       />
     </View>
