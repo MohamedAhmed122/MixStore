@@ -4,9 +4,11 @@ import {primary, white} from '../../config/colors';
 
 const width = Dimensions.get('window').width;
 
-export default function Menu({text, color = primary, Icon, ...props}) {
+export default function Menu({text, onPress, color = primary, Icon, ...props}) {
   return (
-    <TouchableOpacity style={[styles.menu, {backgroundColor: color}]}>
+    <TouchableOpacity
+      style={[styles.menu, {backgroundColor: color}]}
+      onPress={onPress}>
       {Icon && <Icon {...props} />}
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
   text: {
     color: white,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 19,
     marginTop: 15,
     textTransform: 'uppercase',
   },

@@ -10,6 +10,7 @@ import CartNavigation from './CartNavigation';
 import MoreNavigation from './MoreNavigation';
 import {useSelector} from 'react-redux';
 import AdminMenuScreen from '../Screens/AdminMenuScreen';
+import AdminNavigation from './AdminNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ export default function AppNavigation() {
       {currentUser.isAdmin === 'true' && (
         <Tab.Screen
           name="Admin"
-          component={AdminMenuScreen}
+          component={AdminNavigation}
           options={{
             tabBarIcon: ({color, size}) => (
               <MaterialIcons
