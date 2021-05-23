@@ -7,6 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppButton from '../../common/AppButton';
 import AppInput from '../../common/AppInput';
+import PickItem from '../../components/PickItem';
 import {danger, primary} from '../../config/colors';
 
 const validationSchema = Yup.object().shape({
@@ -56,6 +57,7 @@ export default function AdminCreateNew() {
               {errors.name && touched?.name ? (
                 <Text style={styles.errorMessage}>{errors?.name}</Text>
               ) : null}
+              <PickItem />
               <View style={{width: '50%'}}>
                 <AppInput
                   placeholder="Cal"
