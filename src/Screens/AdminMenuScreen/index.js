@@ -6,7 +6,8 @@ import {blue, danger, secondary, white} from '../../config/colors';
 
 export default function AdminMenuScreen({navigation}) {
   return (
-    <View>
+    <View
+      style={{alignItems: 'center', justifyContent: 'center', height: '100%'}}>
       <SafeAreaView />
       <View style={{flexDirection: 'row'}}>
         <Menu
