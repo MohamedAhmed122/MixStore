@@ -439,7 +439,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 49cbe4b43e445b06bf29199b6ad2057649e4c8f5
-  FBReactNativeSpec: b65ec9ef35e46131955695c153271a4473cf8b65
+  FBReactNativeSpec: 5fbc7f52ea2efc2a9a73633d0b436ba93f480074
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 4dff8fe8d10ddef9e7880e770080f4a56121397e
@@ -477,4 +477,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: caee69a003a18f2fcdc05d430823b58a90a5b074
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

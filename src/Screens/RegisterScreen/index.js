@@ -8,6 +8,12 @@ import AppInput from '../../common/AppInput';
 import {danger, primary, secondary, white} from '../../config/colors';
 import {useDispatch, useSelector} from 'react-redux';
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required().email().label('Email'),
+  password: Yup.string().required().min(6).label('Password'),
+  firstName: Yup.string().required().min(3).label('First Name'),
+  lastName: Yup.string().required().min(3).label('Last Name'),
+});
 
 export default function RegisterScreen() {
   const dispatch = useDispatch();
